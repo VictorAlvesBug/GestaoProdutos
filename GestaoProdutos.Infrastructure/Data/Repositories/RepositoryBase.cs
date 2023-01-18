@@ -96,7 +96,8 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 						FROM
 							{nomeEntity}
 						WHERE
-							Codigo = @Codigo;
+							Codigo = @Codigo
+							AND IsAtivo = 1;
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))
@@ -119,7 +120,8 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 						SET
 							IsAtivo = 0
 						WHERE
-							Codigo = @Codigo;
+							Codigo = @Codigo
+							AND IsAtivo = 1;
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))
@@ -150,7 +152,8 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 						SET
 							{strListaParesPropriedadeVariavel}
 						WHERE
-							Codigo = {codigo};
+							Codigo = {codigo}
+							AND IsAtivo = 1;
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))

@@ -6,8 +6,8 @@ namespace GestaoProdutos.Application.Dtos.Produto
     {
         public int? Codigo { get; set; }
         public string Descricao { get; set; }
-        public DateTime? DataFabricacao { get; set; }
-        public DateTime? DataValidade { get; set; }
+        public string DataFabricacao { get; set; }
+        public string DataValidade { get; set; }
         public int? CodigoFornecedor { get; set; }
         public string DescricaoFornecedor { get; set; }
         public string CnpjFornecedor { get; set; }

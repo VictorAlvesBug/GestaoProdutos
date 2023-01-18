@@ -63,12 +63,26 @@ namespace GestaoProdutos.Application.Mappers
 				}
 			}
 
+			string dataFabricacao = null;
+
+			if (produto.DataFabricacao != null && produto.DataFabricacao != DateTime.MinValue)
+			{
+				dataFabricacao = produto.DataFabricacao?.ToString("dd/MM/yyyy");
+			}
+
+			string dataValidade = null;
+
+			if (produto.DataValidade != null && produto.DataValidade != DateTime.MinValue)
+			{
+				dataValidade = produto.DataValidade?.ToString("dd/MM/yyyy");
+			}
+
 			var produtoDto = new ProdutoDto
 			{
 				Codigo = produto.Codigo,
 				Descricao = produto.Descricao,
-				DataFabricacao = produto.DataFabricacao,
-				DataValidade = produto.DataValidade,
+				DataFabricacao = dataFabricacao,
+				DataValidade = dataValidade,
 				CodigoFornecedor = produto.CodigoFornecedor,
 				DescricaoFornecedor = produto.DescricaoFornecedor,
 				CnpjFornecedor = cnpjFornecedorComMascara
