@@ -1,19 +1,18 @@
-﻿using GestaoProdutos.Application.Dtos;
+﻿using GestaoProdutos.Application.Dtos.Produto;
 using GestaoProdutos.Application.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace GestaoProdutos.API.Controllers
 {
-	[ApiController]
+    [ApiController]
 	[Route("[controller]")]
 	public class ProdutosController : ControllerBase
 	{
-		// https://www.youtube.com/watch?v=plS-rf2UIPI
-		// 2:13:45
-
 		private readonly IApplicationServiceProduto applicationServiceProduto;
 
 		public ProdutosController(IApplicationServiceProduto applicationServiceProduto)
@@ -22,13 +21,68 @@ namespace GestaoProdutos.API.Controllers
 		}
 
 		[HttpGet]
-		public IEnumerable<ProdutoDto> GetAll()
+		public ActionResult<IEnumerable<ProdutoDto>> Get()
 		{
-			var rng = new Random();
-			return Enumerable.Range(1, 5).Select(index => new ProdutoDto
+			var produtosDto = applicationServiceProduto.GetAll();
+			return StatusCode(StatusCodes.Status200OK, produtosDto);
+		}
+
+		[HttpGet]
+		[Route("{codigo}")]
+		public ActionResult<ProdutoDto> Get(int codigo)
+		{
+			var produtoDto = applicationServiceProduto.GetByCodigo(codigo);
+
+			if(produtoDto == null)
 			{
-				Codigo = index
-			});
+				return StatusCode(StatusCodes.Status404NotFound);
+			}
+
+			return StatusCode(StatusCodes.Status200OK, produtoDto);
+		}
+
+		[HttpPost]
+		public ActionResult<ProdutoDto> Post([FromBody] CreateUpdateProdutoDto createUpdateProdutoDto)
+		{
+			int? codigoCriado = applicationServiceProduto.Add(createUpdateProdutoDto);
+
+			if (codigoCriado == null)
+			{
+				return StatusCode(StatusCodes.Status400BadRequest);
+			}
+
+			var produtoDtoCriado = applicationServiceProduto.GetByCodigo(codigoCriado.Value);
+
+			if(produtoDtoCriado == null)
+			{
+				return StatusCode(StatusCodes.Status404NotFound);
+			}
+
+			return StatusCode(StatusCodes.Status201Created, produtoDtoCriado);
+		}
+
+		[HttpPut]
+		[Route("{codigo}")]
+		public ActionResult<ProdutoDto> Put(int codigo, [FromBody] CreateUpdateProdutoDto createUpdateProdutoDto)
+		{
+			if (applicationServiceProduto.Update(codigo, createUpdateProdutoDto))
+			{
+				return StatusCode(StatusCodes.Status200OK);
+			}
+
+			return StatusCode(StatusCodes.Status400BadRequest);
+		}
+
+		[HttpDelete]
+		[Route("{codigo}")]
+		public ActionResult<ProdutoDto> Delete(int codigo)
+		{
+			if (applicationServiceProduto.DeleteByCodigo(codigo))
+			{
+				return StatusCode(StatusCodes.Status204NoContent);
+			}
+
+			return StatusCode(StatusCodes.Status400BadRequest);
 		}
 	}
 }

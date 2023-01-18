@@ -1,12 +1,12 @@
-﻿using GestaoProdutos.Application.Dtos;
+﻿using GestaoProdutos.Application.Dtos.Produto;
 using GestaoProdutos.Domain.Entities;
 using System.Collections.Generic;
 
 namespace GestaoProdutos.Application.Interfaces.Mappers
 {
-	public interface IMapperProduto
+    public interface IMapperProduto
 	{
-		Produto MapperDtoToEntity(ProdutoDto produtoDto);
+		Produto MapperDtoToEntity(CreateUpdateProdutoDto createUpdateProdutoDto);
 		
 		IEnumerable<ProdutoDto> MapperListProdutosDto(IEnumerable<Produto> produtos);
 

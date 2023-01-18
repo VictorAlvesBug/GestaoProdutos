@@ -17,7 +17,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 				.ToList();
 		}
 
-		public bool Add(TEntity entity)
+		public int? Add(TEntity entity)
 		{
 			try
 			{
@@ -35,12 +35,13 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 						INSERT INTO {nomeEntity}
 							({strListaPropriedades})
 						VALUES
-							({strListaVariaveis})
+							({strListaVariaveis});
+						SELECT SCOPE_IDENTITY();
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))
 				{
-					return connection.Execute(query, entity) > 0;
+					return connection.QueryFirstOrDefault<int?>(query, entity);
 				}
 			}
 			catch (Exception ex)
@@ -129,7 +130,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			catch (Exception ex) { throw ex; }
 		}
 
-		public bool Update(TEntity entity)
+		public bool Update(int codigo, TEntity entity)
 		{
 			try
 			{
@@ -138,6 +139,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 				List<string> listaPropriedades = ListarPropriedades();
 
 				listaPropriedades.Remove("Codigo");
+				listaPropriedades.Remove("IsAtivo");
 
 				string strListaParesPropriedadeVariavel = string
 					.Join(",", listaPropriedades.Select(propriedade => $"{propriedade} = @{propriedade}"));
@@ -148,7 +150,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 						SET
 							{strListaParesPropriedadeVariavel}
 						WHERE
-							Codigo = @Codigo;
+							Codigo = {codigo};
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))

@@ -1,12 +1,12 @@
-﻿using GestaoProdutos.Application.Dtos;
+﻿using GestaoProdutos.Application.Dtos.Produto;
 using System.Collections.Generic;
 
 namespace GestaoProdutos.Application.Interfaces
 {
-	public interface IApplicationServiceProduto
+    public interface IApplicationServiceProduto
 	{
-		bool Add(ProdutoDto produtoDto);
-		bool Update(ProdutoDto produtoDto);
+		int? Add(CreateUpdateProdutoDto createUpdateProdutoDto);
+		bool Update(int codigo, CreateUpdateProdutoDto createUpdateProdutoDto);
 		bool DeleteByCodigo(int codigo);
 		IEnumerable<ProdutoDto> GetAll();
 		ProdutoDto GetByCodigo(int codigo);

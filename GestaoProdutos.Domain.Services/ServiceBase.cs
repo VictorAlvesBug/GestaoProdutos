@@ -13,7 +13,7 @@ namespace GestaoProdutos.Domain.Services
 			this.repository = repository;
 		}
 
-		public bool Add(TEntity entity)
+		public int? Add(TEntity entity)
 		{
 			return repository.Add(entity);
 		}
@@ -33,9 +33,9 @@ namespace GestaoProdutos.Domain.Services
 			return repository.GetByCodigo(codigo);
 		}
 
-		public bool Update(TEntity entity)
+		public bool Update(int codigo, TEntity entity)
 		{
-			return repository.Update(entity);
+			return repository.Update(codigo, entity);
 		}
 	}
 }
