@@ -6,7 +6,7 @@ namespace GestaoProdutos.Application.Dtos.Produto
     public class CreateUpdateProdutoDto
 	{
         [Required(ErrorMessage = "Informe a descrição do produto")]
-        [StringLength(maximumLength: 255, MinimumLength = 3)]
+        [StringLength(maximumLength: 255, MinimumLength = 3, ErrorMessage = "A descrição do produto deve ter de 3 a 255 caracteres")]
         public string Descricao { get; set; }
 
         public DateTime? DataFabricacao { get; set; }
@@ -16,7 +16,7 @@ namespace GestaoProdutos.Application.Dtos.Produto
         public int? CodigoFornecedor { get; set; }
 
 
-		[StringLength(maximumLength: 255, MinimumLength = 3)]
+		[StringLength(maximumLength: 255, MinimumLength = 3, ErrorMessage = "A descrição do fornecedor deve ter de 3 a 255 caracteres")]
 		public string DescricaoFornecedor { get; set; }
 
 

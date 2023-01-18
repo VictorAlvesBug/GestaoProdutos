@@ -1,5 +1,6 @@
 ﻿using GestaoProdutos.Application.Dtos.Produto;
 using GestaoProdutos.Application.Interfaces;
+using GestaoProdutos.Application.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -42,6 +43,7 @@ namespace GestaoProdutos.API.Controllers
 		}
 
 		[HttpPost]
+		[ValidateModel]
 		public ActionResult<ProdutoDto> Post([FromBody] CreateUpdateProdutoDto createUpdateProdutoDto)
 		{
 			int? codigoCriado = applicationServiceProduto.Add(createUpdateProdutoDto);
@@ -63,6 +65,7 @@ namespace GestaoProdutos.API.Controllers
 
 		[HttpPut]
 		[Route("{codigo}")]
+		[ValidateModel]
 		public ActionResult<ProdutoDto> Put(int codigo, [FromBody] CreateUpdateProdutoDto createUpdateProdutoDto)
 		{
 			if (applicationServiceProduto.Update(codigo, createUpdateProdutoDto))

@@ -1,4 +1,5 @@
 using Autofac;
+using GestaoProdutos.Application.Validation;
 using GestaoProdutos.Infrastructure.CrossCutting.IOC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System.Net.Mime;
 
 namespace GestaoProdutos.API
 {
@@ -22,7 +24,18 @@ namespace GestaoProdutos.API
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddControllers();
+			services.AddControllers().ConfigureApiBehaviorOptions(options =>
+			{
+				options.InvalidModelStateResponseFactory = context =>
+				{
+					var result = new ValidationFailedResult(context.ModelState);
+
+					result.ContentTypes.Add(MediaTypeNames.Application.Json);
+
+					return result;
+				};
+			});
+
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 			services.AddSwaggerGen(c =>
 			{
