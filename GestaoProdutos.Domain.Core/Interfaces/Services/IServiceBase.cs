@@ -7,7 +7,7 @@ namespace GestaoProdutos.Domain.Core.Interfaces.Services
 		int? Add(TEntity entity);
 		bool Update(int codigo, TEntity entity);
 		bool DeleteByCodigo(int codigo);
-		IEnumerable<TEntity> GetAll();
+		IEnumerable<TEntity> GetAll(int pagina, int itensPorPagina);
 		TEntity GetByCodigo(int codigo);
 	}
 }

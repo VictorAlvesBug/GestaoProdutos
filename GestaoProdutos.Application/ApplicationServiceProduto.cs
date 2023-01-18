@@ -28,9 +28,9 @@ namespace GestaoProdutos.Application
 			return serviceProduto.DeleteByCodigo(codigo);
 		}
 
-		public IEnumerable<ProdutoDto> GetAll()
+		public IEnumerable<ProdutoDto> GetAll(int pagina, int itensPorPagina)
 		{
-			var produtos = serviceProduto.GetAll();
+			var produtos = serviceProduto.GetAll(pagina, itensPorPagina);
 			return mapperProduto.MapperListProdutosDto(produtos);
 		}
 

@@ -22,9 +22,9 @@ namespace GestaoProdutos.API.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<ProdutoDto>> Get()
+		public ActionResult<IEnumerable<ProdutoDto>> GetAll(int pagina = 1, int itensPorPagina = 3)
 		{
-			var produtosDto = applicationServiceProduto.GetAll();
+			var produtosDto = applicationServiceProduto.GetAll(pagina, itensPorPagina);
 			return StatusCode(StatusCodes.Status200OK, produtosDto);
 		}
 

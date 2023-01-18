@@ -8,7 +8,7 @@ namespace GestaoProdutos.Application.Interfaces
 		int? Add(CreateUpdateProdutoDto createUpdateProdutoDto);
 		bool Update(int codigo, CreateUpdateProdutoDto createUpdateProdutoDto);
 		bool DeleteByCodigo(int codigo);
-		IEnumerable<ProdutoDto> GetAll();
+		IEnumerable<ProdutoDto> GetAll(int pagina, int itensPorPagina);
 		ProdutoDto GetByCodigo(int codigo);
 	}
 }

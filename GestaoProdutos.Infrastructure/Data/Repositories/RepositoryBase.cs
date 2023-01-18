@@ -50,7 +50,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			}
 		}
 
-		public IEnumerable<TEntity> GetAll()
+		public IEnumerable<TEntity> GetAll(int pagina, int itensPorPagina)
 		{
 			try
 			{
@@ -60,13 +60,19 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 
 				string strListaPropriedades = string.Join(",", listaPropriedades);
 
+				int qtdeItensPular = (pagina - 1) * itensPorPagina;
+
 				string query = $@"
 						SELECT 
 							{strListaPropriedades}
 						FROM
 							{nomeEntity}
 						WHERE
-							IsAtivo = 1;
+							IsAtivo = 1
+						ORDER BY
+							Codigo
+						OFFSET {qtdeItensPular} ROWS 
+						FETCH NEXT {itensPorPagina} ROWS ONLY;
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))

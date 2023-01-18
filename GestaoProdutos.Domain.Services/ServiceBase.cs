@@ -23,9 +23,9 @@ namespace GestaoProdutos.Domain.Services
 			return repository.DeleteByCodigo(codigo);
 		}
 
-		public IEnumerable<TEntity> GetAll()
+		public IEnumerable<TEntity> GetAll(int pagina, int itensPorPagina)
 		{
-			return repository.GetAll();
+			return repository.GetAll(pagina, itensPorPagina);
 		}
 
 		public TEntity GetByCodigo(int codigo)
