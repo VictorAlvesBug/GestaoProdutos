@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using GestaoProdutos.Domain.Core.Interfaces.Filters;
+using System.Collections.Generic;
 
 namespace GestaoProdutos.Domain.Core.Interfaces.Services
 {
@@ -7,7 +8,8 @@ namespace GestaoProdutos.Domain.Core.Interfaces.Services
 		int? Add(TEntity entity);
 		bool Update(int codigo, TEntity entity);
 		bool DeleteByCodigo(int codigo);
-		IEnumerable<TEntity> GetAll(int pagina, int itensPorPagina);
+		IEnumerable<TEntity> Filter(IFilterBase<TEntity> filter);
+		int Count(IFilterBase<TEntity> filter);
 		TEntity GetByCodigo(int codigo);
 	}
 }

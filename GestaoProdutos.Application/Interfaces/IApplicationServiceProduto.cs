@@ -1,4 +1,5 @@
-﻿using GestaoProdutos.Application.Dtos.Produto;
+﻿using GestaoProdutos.Application.Dtos.Paginacao;
+using GestaoProdutos.Application.Dtos.Produto;
 using System.Collections.Generic;
 
 namespace GestaoProdutos.Application.Interfaces
@@ -8,7 +9,7 @@ namespace GestaoProdutos.Application.Interfaces
 		int? Add(CreateUpdateProdutoDto createUpdateProdutoDto);
 		bool Update(int codigo, CreateUpdateProdutoDto createUpdateProdutoDto);
 		bool DeleteByCodigo(int codigo);
-		IEnumerable<ProdutoDto> GetAll(int pagina, int itensPorPagina);
+		PaginacaoDto<ProdutoDto> Filter(FilterProdutoDto filterProdutoDto);
 		ProdutoDto GetByCodigo(int codigo);
 	}
 }

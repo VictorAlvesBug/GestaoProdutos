@@ -1,4 +1,5 @@
-﻿using GestaoProdutos.Application.Dtos.Produto;
+﻿using GestaoProdutos.Application.Dtos.Paginacao;
+using GestaoProdutos.Application.Dtos.Produto;
 using GestaoProdutos.Application.Interfaces;
 using GestaoProdutos.Application.Validation;
 using Microsoft.AspNetCore.Http;
@@ -10,7 +11,7 @@ using System.Net;
 
 namespace GestaoProdutos.API.Controllers
 {
-    [ApiController]
+	[ApiController]
 	[Route("[controller]")]
 	public class ProdutosController : ControllerBase
 	{
@@ -22,10 +23,30 @@ namespace GestaoProdutos.API.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<ProdutoDto>> GetAll(int pagina = 1, int itensPorPagina = 3)
+		public ActionResult<PaginacaoDto<ProdutoDto>> Filter(
+			int pagina = 1,
+			int qtdeItensPorPagina = 3,
+			string descricao = null,
+			DateTime? dataFabricacao = null,
+			DateTime? dataValidade = null,
+			int? codigoFornecedor = null,
+			string cnpjFornecedor = null
+
+		)
 		{
-			var produtosDto = applicationServiceProduto.GetAll(pagina, itensPorPagina);
-			return StatusCode(StatusCodes.Status200OK, produtosDto);
+			var filterProdutoDto = new FilterProdutoDto
+			{
+				Pagina = pagina,
+				QtdeItensPorPagina = qtdeItensPorPagina,
+				Descricao = descricao,
+				DataFabricacao = dataFabricacao,
+				DataValidade = dataValidade,
+				CodigoFornecedor = codigoFornecedor,
+				CnpjFornecedor = cnpjFornecedor
+			};
+
+			var paginacaoProdutosDto = applicationServiceProduto.Filter(filterProdutoDto);
+			return StatusCode(StatusCodes.Status200OK, paginacaoProdutosDto);
 		}
 
 		[HttpGet]
@@ -34,7 +55,7 @@ namespace GestaoProdutos.API.Controllers
 		{
 			var produtoDto = applicationServiceProduto.GetByCodigo(codigo);
 
-			if(produtoDto == null)
+			if (produtoDto == null)
 			{
 				return StatusCode(StatusCodes.Status404NotFound);
 			}
@@ -55,7 +76,7 @@ namespace GestaoProdutos.API.Controllers
 
 			var produtoDtoCriado = applicationServiceProduto.GetByCodigo(codigoCriado.Value);
 
-			if(produtoDtoCriado == null)
+			if (produtoDtoCriado == null)
 			{
 				return StatusCode(StatusCodes.Status404NotFound);
 			}

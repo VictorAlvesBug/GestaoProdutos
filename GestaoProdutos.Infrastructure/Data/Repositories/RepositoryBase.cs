@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using GestaoProdutos.Application.Dtos.Produto;
+using GestaoProdutos.Domain.Core.Interfaces.Filters;
 using GestaoProdutos.Domain.Core.Interfaces.Repositories;
 using GestaoProdutos.Infrastructure.Data.ConnectionFactories;
 using System;
@@ -50,7 +52,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			}
 		}
 
-		public IEnumerable<TEntity> GetAll(int pagina, int itensPorPagina)
+		public IEnumerable<TEntity> Filter(IFilterBase<TEntity> filter)
 		{
 			try
 			{
@@ -60,7 +62,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 
 				string strListaPropriedades = string.Join(",", listaPropriedades);
 
-				int qtdeItensPular = (pagina - 1) * itensPorPagina;
+				int qtdeItensPular = (filter.Pagina - 1) * filter.QtdeItensPorPagina;
 
 				string query = $@"
 						SELECT 
@@ -72,12 +74,38 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 						ORDER BY
 							Codigo
 						OFFSET {qtdeItensPular} ROWS 
-						FETCH NEXT {itensPorPagina} ROWS ONLY;
+						FETCH NEXT {filter.QtdeItensPorPagina} ROWS ONLY;
 						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))
 				{
 					return connection.Query<TEntity>(query);
+				}
+			}
+			catch (Exception ex)
+			{
+				throw ex;
+			}
+		}
+
+		public int Count(IFilterBase<TEntity> filter)
+		{
+			try
+			{
+				string nomeEntity = typeof(TEntity).Name;
+
+				string query = $@"
+						SELECT 
+							COUNT(*)
+						FROM
+							{nomeEntity}
+						WHERE
+							IsAtivo = 1;
+						";// TODO: implementar condicoes de acordo com filtro recebido, de forma genérica
+
+				using (var connection = ConnectionFactory.Conexao("master"))
+				{
+					return connection.QueryFirstOrDefault<int>(query);
 				}
 			}
 			catch (Exception ex)

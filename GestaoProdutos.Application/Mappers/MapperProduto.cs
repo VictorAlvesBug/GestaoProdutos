@@ -1,4 +1,5 @@
-﻿using GestaoProdutos.Application.Dtos.Produto;
+﻿using GestaoProdutos.Application.Dtos.Paginacao;
+using GestaoProdutos.Application.Dtos.Produto;
 using GestaoProdutos.Application.Interfaces.Mappers;
 using GestaoProdutos.Domain.Entities;
 using System;
@@ -49,7 +50,7 @@ namespace GestaoProdutos.Application.Mappers
 
 			string cnpjFornecedorComMascara = null;
 
-			if(produto.CnpjFornecedor != null)
+			if (produto.CnpjFornecedor != null)
 			{
 				if (produto.CnpjFornecedor.Length == 14)
 				{
@@ -91,16 +92,31 @@ namespace GestaoProdutos.Application.Mappers
 			return produtoDto;
 		}
 
-		public IEnumerable<ProdutoDto> MapperListProdutosDto(IEnumerable<Produto> produtos)
+		public PaginacaoDto<ProdutoDto> MapperPaginacaoProdutosDto(
+			IEnumerable<Produto> produtos,
+			FilterProdutoDto filterProdutoDto, 
+			int qtdeTotalItens)
 		{
 			if (produtos == null)
 			{
-				return new List<ProdutoDto>();
+				return new PaginacaoDto<ProdutoDto>
+				{
+					Pagina = filterProdutoDto.Pagina,
+					QtdeItensPorPagina = filterProdutoDto.QtdeItensPorPagina,
+					QtdeTotalItens = qtdeTotalItens,
+					Lista = new List<ProdutoDto>()
+				};
 			}
 
 			var produtosDto = produtos.Select(produto => MapperEntityToDto(produto));
 
-			return produtosDto;
+			return new PaginacaoDto<ProdutoDto>
+			{
+				Pagina = filterProdutoDto.Pagina,
+				QtdeItensPorPagina = filterProdutoDto.QtdeItensPorPagina,
+				QtdeTotalItens = qtdeTotalItens,
+				Lista = produtosDto
+			};
 		}
 	}
 }

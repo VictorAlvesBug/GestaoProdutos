@@ -1,4 +1,5 @@
-﻿using GestaoProdutos.Application.Dtos.Produto;
+﻿using GestaoProdutos.Application.Dtos.Paginacao;
+using GestaoProdutos.Application.Dtos.Produto;
 using GestaoProdutos.Application.Interfaces;
 using GestaoProdutos.Application.Interfaces.Mappers;
 using GestaoProdutos.Domain.Core.Interfaces.Services;
@@ -10,11 +11,17 @@ namespace GestaoProdutos.Application
 	{
 		private readonly IServiceProduto serviceProduto;
 		private readonly IMapperProduto mapperProduto;
+		private readonly IMapperFilterProduto mapperFilterProduto;
 
-		public ApplicationServiceProduto(IServiceProduto serviceProduto, IMapperProduto mapperProduto)
+		public ApplicationServiceProduto(
+			IServiceProduto serviceProduto, 
+			IMapperProduto mapperProduto, 
+			IMapperFilterProduto mapperFilterProduto
+		)
 		{
 			this.serviceProduto = serviceProduto;
 			this.mapperProduto = mapperProduto;
+			this.mapperFilterProduto = mapperFilterProduto;
 		}
 
 		public int? Add(CreateUpdateProdutoDto createUpdateProdutoDto)
@@ -28,10 +35,15 @@ namespace GestaoProdutos.Application
 			return serviceProduto.DeleteByCodigo(codigo);
 		}
 
-		public IEnumerable<ProdutoDto> GetAll(int pagina, int itensPorPagina)
+		public PaginacaoDto<ProdutoDto> Filter(FilterProdutoDto filterProdutoDto)
 		{
-			var produtos = serviceProduto.GetAll(pagina, itensPorPagina);
-			return mapperProduto.MapperListProdutosDto(produtos);
+			var filterProduto = mapperFilterProduto.MapperDtoToEntity(filterProdutoDto);
+
+			var produtos = serviceProduto.Filter(filterProduto);
+
+			int qtdeTotalItens = serviceProduto.Count(filterProduto);
+
+			return mapperProduto.MapperPaginacaoProdutosDto(produtos, filterProdutoDto, qtdeTotalItens);
 		}
 
 		public ProdutoDto GetByCodigo(int codigo)

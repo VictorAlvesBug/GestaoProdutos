@@ -21,13 +21,13 @@ namespace GestaoProdutos.Infrastructure.CrossCutting.IOC
 
 			builder.RegisterType<ConnectionFactory>().As<IConnectionFactory>();
 
-			//builder.RegisterType<ServiceBase>().As<IServiceBase>();
 			builder.RegisterType<ServiceProduto>().As<IServiceProduto>();
 
-			//builder.RegisterType<RepositoryBase>().As<IRepositoryBase>();
 			builder.RegisterType<RepositoryProduto>().As<IRepositoryProduto>();
 
 			builder.RegisterType<MapperProduto>().As<IMapperProduto>();
+
+			builder.RegisterType<MapperFilterProduto>().As<IMapperFilterProduto>();
 			#endregion
 		}
 	}

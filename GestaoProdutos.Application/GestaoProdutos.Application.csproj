@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GestaoProdutos.Domain.Core\GestaoProdutos.Domain.Core.csproj" />
+    <ProjectReference Include="..\GestaoProdutos.Domain.Filters\GestaoProdutos.Domain.Filters.csproj" />
   </ItemGroup>
 
 </Project>

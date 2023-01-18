@@ -1,4 +1,5 @@
-﻿using GestaoProdutos.Domain.Core.Interfaces.Repositories;
+﻿using GestaoProdutos.Domain.Core.Interfaces.Filters;
+using GestaoProdutos.Domain.Core.Interfaces.Repositories;
 using GestaoProdutos.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
 
@@ -23,9 +24,14 @@ namespace GestaoProdutos.Domain.Services
 			return repository.DeleteByCodigo(codigo);
 		}
 
-		public IEnumerable<TEntity> GetAll(int pagina, int itensPorPagina)
+		public IEnumerable<TEntity> Filter(IFilterBase<TEntity> filter)
 		{
-			return repository.GetAll(pagina, itensPorPagina);
+			return repository.Filter(filter);
+		}
+
+		public int Count(IFilterBase<TEntity> filter)
+		{
+			return repository.Count(filter);
 		}
 
 		public TEntity GetByCodigo(int codigo)
