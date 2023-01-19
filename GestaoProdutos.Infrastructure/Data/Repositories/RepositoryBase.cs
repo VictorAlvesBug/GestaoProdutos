@@ -12,14 +12,14 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 {
 	public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
 	{
-		private List<string> ListarPropriedades()
+		public List<string> ListarPropriedades()
 		{
 			return typeof(TEntity).GetProperties()
 				.Select(propriedade => propriedade.Name)
 				.ToList();
 		}
 
-		public int? Add(TEntity entity)
+		public virtual int? Add(TEntity entity)
 		{
 			try
 			{
@@ -52,7 +52,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			}
 		}
 
-		public IEnumerable<TEntity> Filter(IFilterBase<TEntity> filter)
+		public virtual IEnumerable<TEntity> Filter(IFilterBase<TEntity> filter)
 		{
 			try
 			{
@@ -88,7 +88,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			}
 		}
 
-		public int Count(IFilterBase<TEntity> filter)
+		public virtual int Count(IFilterBase<TEntity> filter)
 		{
 			try
 			{
@@ -101,7 +101,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 							{nomeEntity}
 						WHERE
 							IsAtivo = 1;
-						";// TODO: implementar condicoes de acordo com filtro recebido, de forma genérica
+						";
 
 				using (var connection = ConnectionFactory.Conexao("master"))
 				{
@@ -114,7 +114,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			}
 		}
 
-		public TEntity GetByCodigo(int codigo)
+		public virtual TEntity GetByCodigo(int codigo)
 		{
 			try
 			{
@@ -142,7 +142,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			catch (Exception ex) { throw ex; }
 		}
 
-		public bool DeleteByCodigo(int codigo)
+		public virtual bool DeleteByCodigo(int codigo)
 		{
 			try
 			{
@@ -166,7 +166,7 @@ namespace GestaoProdutos.Infrastructure.Data.Repositories
 			catch (Exception ex) { throw ex; }
 		}
 
-		public bool Update(int codigo, TEntity entity)
+		public virtual bool Update(int codigo, TEntity entity)
 		{
 			try
 			{

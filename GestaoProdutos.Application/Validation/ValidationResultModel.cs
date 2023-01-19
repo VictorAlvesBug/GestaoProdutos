@@ -16,7 +16,7 @@ namespace GestaoProdutos.Application.Validation
 		{
 			Message = "Erro de Validação";
 			Errors = modelState.Keys
-					.SelectMany(key => modelState[key].Errors.Select(x => new ValidationError(key, 0, x.ErrorMessage)))
+					.SelectMany(key => modelState[key].Errors.Select(x => new ValidationError(key, x.ErrorMessage)))
 					.ToList();
 		}
 	}

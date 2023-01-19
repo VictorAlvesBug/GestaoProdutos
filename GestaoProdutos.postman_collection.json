@@ -15,7 +15,26 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44311/produtos?pagina=1&qtdeItensPorPagina=2",
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Produtos por Descrição",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?descricao=Galaxy",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -26,12 +45,133 @@
 							],
 							"query": [
 								{
-									"key": "pagina",
-									"value": "1"
-								},
+									"key": "descricao",
+									"value": "Galaxy"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Produtos por Data de Fabricação",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?dataFabricacao=2023-01-10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							],
+							"query": [
 								{
-									"key": "qtdeItensPorPagina",
-									"value": "2"
+									"key": "dataFabricacao",
+									"value": "2023-01-10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Produtos por Data de Validade",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?dataValidade=2023-09-10",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "dataValidade",
+									"value": "2023-09-10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Produtos por Código do Fornecedor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?codigoFornecedor=12",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "codigoFornecedor",
+									"value": "12"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Produtos por Descrição do Fornecedor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?descricaoFornecedor=Samsung",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "descricaoFornecedor",
+									"value": "Samsung"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar Produtos por CNPJ do Fornecedor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?cnpjFornecedor=00280273000137",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "cnpjFornecedor",
+									"value": "00280273000137"
 								}
 							]
 						}
@@ -59,13 +199,33 @@
 					"response": []
 				},
 				{
+					"name": "Retornar Produto por Código (Produto Inválido)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos/999",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Adicionar Produto Simples",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Simples\"\r\n}",
+							"raw": "{\r\n    \"Descricao\": \"Headset Wireless HyperX\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -93,7 +253,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto com Fornecedor\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"raw": "{\r\n    \"Descricao\": \"Smartphone Samsung Galaxy A31\",\r\n    \"CodigoFornecedor\": 12,\r\n    \"DescricaoFornecedor\": \"Samsung\",\r\n    \"CnpjFornecedor\": \"00.280.273/0001-37\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -121,7 +281,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto com Datas\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\"\r\n}",
+							"raw": "{\r\n    \"Descricao\": \"Biscoito Trakinas sabor Chocolate\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -149,7 +309,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Completo\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"raw": "{\r\n    \"Descricao\": \"Notebook Samsung Odyssey\",\r\n    \"DataFabricacao\": \"2022-12-26\",\r\n    \"DataValidade\": \"2023-02-26\",\r\n    \"CodigoFornecedor\": 12,\r\n    \"DescricaoFornecedor\": \"Samsung\",\r\n    \"CnpjFornecedor\": \"00280273000137\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,7 +337,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Completo para Deletar\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"raw": "{\r\n    \"Descricao\": \"Papel A4 Sulfite Chamequinho - 100 Folhas\",\r\n    \"DataFabricacao\": \"2023-01-20\",\r\n    \"DataValidade\": \"2023-09-10\",\r\n    \"CodigoFornecedor\": 46,\r\n    \"DescricaoFornecedor\": \"Chamex\",\r\n    \"CnpjFornecedor\": \"10.689.358/0001-10\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -199,13 +359,209 @@
 					"response": []
 				},
 				{
-					"name": "Adicionar Produto Inválido",
+					"name": "Adicionar Produto Inválido (Vazio)",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (Datas Inválidas)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo inválido\",\r\n    \"DataFabricacao\": \"2023-04-02\",\r\n    \"DataValidade\": \"2023-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (Apenas Data de Fabricação)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo inválido\",\r\n    \"DataFabricacao\": \"2023-04-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (Apenas Data de Validade)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo inválido\",\r\n    \"DataValidade\": \"2023-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (CNPJ do Fornecedor Inválido)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"CodigoFornecedor\": 123,\r\n    \"DescricaoFornecedor\": \"Exemplo Fornecedor\",\r\n    \"CnpjFornecedor\": \"123.456.789-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (Apenas CNPJ do Fornecedor)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"CnpjFornecedor\": \"12.345.678/9012-34\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (Apenas Descrição do Fornecedor)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"DescricaoFornecedor\": \"Exemplo Fornecedor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido (Apenas Código do Fornecedor)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"CodigoFornecedor\": 123\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -343,13 +699,216 @@
 					"response": []
 				},
 				{
-					"name": "Atualizar Produto Inválido",
+					"name": "Atualizar Produto Inválido (Vazio)",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Descricao\": \"3\"\r\n}",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Datas Inválidas)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo inválido\",\r\n    \"DataFabricacao\": \"2023-04-02\",\r\n    \"DataValidade\": \"2023-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Apenas Data de Fabricação)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo inválido\",\r\n    \"DataFabricacao\": \"2023-04-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Apenas Data de Validade)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo inválido\",\r\n    \"DataValidade\": \"2023-01-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (CNPJ do Fornecedor Inválido)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"CodigoFornecedor\": 123,\r\n    \"DescricaoFornecedor\": \"Exemplo Fornecedor\",\r\n    \"CnpjFornecedor\": \"123.456.789-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Apenas CNPJ do Fornecedor)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"CnpjFornecedor\": \"12.345.678/9012-34\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Apenas Descrição do Fornecedor)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"DescricaoFornecedor\": \"Exemplo Fornecedor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Apenas Código do Fornecedor)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo Inválido\",\r\n    \"CodigoFornecedor\": 123\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -386,6 +945,26 @@
 							"path": [
 								"produtos",
 								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Produto por Código (Produto Inválido)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos/999",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"999"
 							]
 						}
 					},

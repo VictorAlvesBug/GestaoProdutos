@@ -4,6 +4,7 @@ using GestaoProdutos.Application.Interfaces;
 using GestaoProdutos.Application.Validation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,11 @@ namespace GestaoProdutos.API.Controllers
 		[ValidateModel]
 		public ActionResult<ProdutoDto> Post([FromBody] CreateUpdateProdutoDto createUpdateProdutoDto)
 		{
+			if (!createUpdateProdutoDto.IsValido(out ModelStateDictionary modelState))
+			{
+				return new ValidationFailedResult(modelState);
+			}
+
 			int? codigoCriado = applicationServiceProduto.Add(createUpdateProdutoDto);
 
 			if (codigoCriado == null)
@@ -91,6 +97,11 @@ namespace GestaoProdutos.API.Controllers
 		[ValidateModel]
 		public ActionResult<ProdutoDto> Put(int codigo, [FromBody] CreateUpdateProdutoDto createUpdateProdutoDto)
 		{
+			if (!createUpdateProdutoDto.IsValido(out ModelStateDictionary modelState))
+			{
+				return new ValidationFailedResult(modelState);
+			}
+
 			if (applicationServiceProduto.Update(codigo, createUpdateProdutoDto))
 			{
 				return StatusCode(StatusCodes.Status200OK);
