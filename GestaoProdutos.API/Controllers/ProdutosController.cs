@@ -25,11 +25,12 @@ namespace GestaoProdutos.API.Controllers
 		[HttpGet]
 		public ActionResult<PaginacaoDto<ProdutoDto>> Filter(
 			int pagina = 1,
-			int qtdeItensPorPagina = 3,
+			int qtdeItensPorPagina = 10,
 			string descricao = null,
 			DateTime? dataFabricacao = null,
 			DateTime? dataValidade = null,
 			int? codigoFornecedor = null,
+			string descricaoFornecedor = null,
 			string cnpjFornecedor = null
 
 		)
@@ -42,6 +43,7 @@ namespace GestaoProdutos.API.Controllers
 				DataFabricacao = dataFabricacao,
 				DataValidade = dataValidade,
 				CodigoFornecedor = codigoFornecedor,
+				DescricaoFornecedor = descricaoFornecedor,
 				CnpjFornecedor = cnpjFornecedor
 			};
 

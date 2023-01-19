@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "18923aa9-6dce-4a39-8d90-3c4ae1eb2f34",
+		"name": "GestaoProdutos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6063645"
+	},
+	"item": [
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "Listar Todos os Produtos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos?pagina=1&qtdeItensPorPagina=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							],
+							"query": [
+								{
+									"key": "pagina",
+									"value": "1"
+								},
+								{
+									"key": "qtdeItensPorPagina",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retornar Produto por Código",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Simples",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Simples\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto com Fornecedor",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto com Fornecedor\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto com Datas",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto com Datas\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Completo",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Completo\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Completo Para Deletar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Completo para Deletar\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adicionar Produto Inválido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Simples",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Simples Editado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto com Fornecedor",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto com Fornecedor Editado\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto com Datas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto com Datas Editado\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/4",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Completo",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Completo Editado\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Produto por Código",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44311/produtos/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

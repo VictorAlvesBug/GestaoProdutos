@@ -38,6 +38,7 @@ namespace GestaoProdutos.Application.Mappers
 				DataFabricacao = filterProdutoDto.DataFabricacao,
 				DataValidade = filterProdutoDto.DataValidade,
 				CodigoFornecedor = filterProdutoDto.CodigoFornecedor,
+				DescricaoFornecedor = filterProdutoDto.DescricaoFornecedor,
 				CnpjFornecedor = cnpjFornecedorSemMascara,
 			};
 

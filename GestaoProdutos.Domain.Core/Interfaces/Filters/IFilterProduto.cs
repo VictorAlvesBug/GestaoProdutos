@@ -11,6 +11,7 @@ namespace GestaoProdutos.Domain.Core.Interfaces.Filters
 		public DateTime? DataFabricacao { get; set; }
 		public DateTime? DataValidade { get; set; }
 		public int? CodigoFornecedor { get; set; }
+		public string DescricaoFornecedor { get; set; }
 		public string CnpjFornecedor { get; set; }
 	}
 }
