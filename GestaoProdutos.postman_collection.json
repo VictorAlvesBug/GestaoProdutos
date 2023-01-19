@@ -134,7 +134,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44311/produtos?descricaoFornecedor=Samsung",
+							"raw": "https://localhost:44311/produtos?descricaoFornecedor=Sams",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -146,7 +146,7 @@
 							"query": [
 								{
 									"key": "descricaoFornecedor",
-									"value": "Samsung"
+									"value": "Sams"
 								}
 							]
 						}
@@ -199,7 +199,7 @@
 					"response": []
 				},
 				{
-					"name": "Retornar Produto por Código (Produto Inválido)",
+					"name": "Retornar Produto por Código (Produto não encontrado)",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -597,7 +597,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44311/produtos/2",
+							"raw": "https://localhost:44311/produtos/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -605,7 +605,7 @@
 							"port": "44311",
 							"path": [
 								"produtos",
-								"2"
+								"3"
 							]
 						}
 					},
@@ -693,6 +693,35 @@
 							"path": [
 								"produtos",
 								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Produto Inválido (Produto não encontrado)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Descricao\": \"Exemplo de Produto Completo Editado\",\r\n    \"DataFabricacao\": \"2023-01-10\",\r\n    \"DataValidade\": \"2023-04-02\",\r\n    \"CodigoFornecedor\": 321,\r\n    \"DescricaoFornecedor\": \"Dell Computadores do Brasil LTDA\",\r\n    \"CnpjFornecedor\": \"72.381.189/0001-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44311/produtos/999",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44311",
+							"path": [
+								"produtos",
+								"999"
 							]
 						}
 					},
@@ -951,7 +980,7 @@
 					"response": []
 				},
 				{
-					"name": "Deletar Produto por Código (Produto Inválido)",
+					"name": "Deletar Produto por Código (Produto não encontrado)",
 					"request": {
 						"method": "DELETE",
 						"header": [],

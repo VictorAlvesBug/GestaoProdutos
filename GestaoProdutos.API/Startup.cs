@@ -1,4 +1,5 @@
 using Autofac;
+using GestaoProdutos.Application.Mappers;
 using GestaoProdutos.Application.Validation;
 using GestaoProdutos.Infrastructure.CrossCutting.IOC;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +36,8 @@ namespace GestaoProdutos.API
 					return result;
 				};
 			});
+
+			AutoMapperInitializer.Initialize(services);
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 			services.AddSwaggerGen(c =>

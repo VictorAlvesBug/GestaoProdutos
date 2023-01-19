@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using GestaoProdutos.Application;
 using GestaoProdutos.Application.Interfaces;
-using GestaoProdutos.Application.Interfaces.Mappers;
 using GestaoProdutos.Application.Mappers;
 using GestaoProdutos.Domain.Core.Interfaces.ConnectionFactories;
 using GestaoProdutos.Domain.Core.Interfaces.Repositories;
@@ -24,10 +23,6 @@ namespace GestaoProdutos.Infrastructure.CrossCutting.IOC
 			builder.RegisterType<ServiceProduto>().As<IServiceProduto>();
 
 			builder.RegisterType<RepositoryProduto>().As<IRepositoryProduto>();
-
-			builder.RegisterType<MapperProduto>().As<IMapperProduto>();
-
-			builder.RegisterType<MapperFilterProduto>().As<IMapperFilterProduto>();
 			#endregion
 		}
 	}
